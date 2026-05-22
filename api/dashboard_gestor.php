@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_perfil'] !== 'gestor') {
 $sql="SELECT
             SUM(CASE WHEN status = 'aberto' THEN 1 ELSE 0 END) as abertos,
             SUM(CASE WHEN status = 'em_execucao' THEN 1 ELSE 0 END) as em_execucao,
-            SUM(CASE WHEN prioridade != 'urgente' AND  status != 'fechado' THEN 1 ELSE 0 END) as urgentes, 
+            SUM(CASE WHEN prioridade = 'urgente' AND status != 'concluido' THEN 1 ELSE 0 END) as urgentes, 
             COUNT(*) as total
             FROM chamados";
 $res = $conn->query($sql);
